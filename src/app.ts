@@ -2,18 +2,16 @@
 
 import { Telegraf } from "telegraf";
 import * as dotenv from "dotenv";
+import { startCommand } from "./commands/start";
+import { helpCommand } from "./commands/help";
 dotenv.config();
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
 // /start command
-bot.start((ctx) => {
-  ctx.reply("Start command is triggered");
-});
+bot.start((ctx) => startCommand(ctx));
 
 // /help command
-bot.help((ctx) => {
-  ctx.reply("Help command is triggered");
-});
+bot.help((ctx) => helpCommand(ctx));
 
 bot.launch();
