@@ -1,1 +1,1 @@
-export const buses = [{ code: "52289", serviceNo: "235" }];
+export const busData = [{ code: "52289", serviceNo: "235" }];

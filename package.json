@@ -2,10 +2,10 @@
   "name": "blk-44-buses",
   "description": "Work in progress...",
   "version": "1.0.0",
-  "main": "dist/app.js",
+  "main": "dist/src/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app.js",
+    "start": "node dist/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
