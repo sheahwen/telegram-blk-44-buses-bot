@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 import { startCommand } from "./commands/start";
 import { helpCommand } from "./commands/help";
 import { testCommand } from "./commands/test";
-import { generateCommandForAllCases } from "./helper/generateArrayForAllCases";
+import { generateCommandForAllCases } from "../lib/helper/generateArrayForAllCases";
 import { hearsHi } from "./hears/hi";
 import { onText } from "./on/text";
 dotenv.config();
