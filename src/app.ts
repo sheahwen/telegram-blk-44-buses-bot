@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 import { startCommand } from "./commands/start";
 import { helpCommand } from "./commands/help";
 import { testCommand } from "./commands/test";
+import { generateCommandForAllCases } from "./helper/generateArrayForAllCases";
 dotenv.config();
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
@@ -16,6 +17,6 @@ bot.start((ctx) => startCommand(ctx));
 bot.help((ctx) => helpCommand(ctx));
 
 // /test command
-bot.command("test", (ctx) => testCommand(ctx));
+bot.command(generateCommandForAllCases("test"), (ctx) => testCommand(ctx));
 
 bot.launch();
