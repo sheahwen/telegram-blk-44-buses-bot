@@ -1,9 +1,11 @@
 {
   "name": "blk-44-buses",
-  "version": "1.0.0",
   "description": "Work in progress...",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "dist/app.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/sheahwen/telegram-blk-44-buses/issues"
   },
-  "homepage": "https://github.com/sheahwen/telegram-blk-44-buses#readme"
+  "homepage": "https://github.com/sheahwen/telegram-blk-44-buses#readme",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
 }
