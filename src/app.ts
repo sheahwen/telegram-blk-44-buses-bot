@@ -7,6 +7,7 @@ import { helpCommand } from "./commands/help";
 import { testCommand } from "./commands/test";
 import { generateCommandForAllCases } from "./helper/generateArrayForAllCases";
 import { hearsHi } from "./hears/hi";
+import { onText } from "./on/text";
 dotenv.config();
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
@@ -21,6 +22,10 @@ bot.help((ctx) => helpCommand(ctx));
 bot.command(generateCommandForAllCases("test"), (ctx) => testCommand(ctx));
 
 // hears method
+// need to disable group privacy setting for use in groupchat
 bot.hears("hi", (ctx) => hearsHi(ctx));
+
+// on method
+bot.on("text", (ctx) => onText(ctx));
 
 bot.launch();
