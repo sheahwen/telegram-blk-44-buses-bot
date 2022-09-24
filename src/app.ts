@@ -3,11 +3,8 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import axios from "axios";
 import { Telegraf } from "telegraf";
 
-import { busData } from "../lib/data/buses";
-import { APIConfig, generateAPIUrl } from "../lib/helper/busArrivalAPIReq";
 import { generateCommandForAllCases } from "../lib/helper/generateArrayForAllCases";
 
 import { helpCommand } from "./commands/help";
@@ -15,6 +12,7 @@ import { startCommand } from "./commands/start";
 import { testCommand } from "./commands/test";
 import { hearsHi } from "./hears/hi";
 import { onText } from "./on/text";
+import { busCommand } from "./commands/bus";
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
@@ -28,14 +26,8 @@ bot.help((ctx) => helpCommand(ctx));
 bot.command(generateCommandForAllCases("test"), (ctx) => testCommand(ctx));
 
 // /235 command
-bot.command("bus", (ctx) => {
-  axios
-    .get(generateAPIUrl(busData[0].code, busData[0].serviceNo), APIConfig)
-    .then((res) => {
-      console.log(res.data);
-      ctx.reply("235");
-    })
-    .catch((e) => console.log(e));
+bot.command(generateCommandForAllCases("bus"), (ctx) => {
+  busCommand(ctx);
 });
 
 // hears method
