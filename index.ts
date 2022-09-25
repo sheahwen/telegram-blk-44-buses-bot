@@ -13,6 +13,7 @@ import { onText } from "./src/on/text";
 import { busCommand } from "./src/commands/bus";
 import { choose4MeCommand } from "./src/commands/choose4me";
 import { hearsHii } from "./src/hears/hii";
+import { choose4MeCb } from "./src/cb/choose4me";
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
@@ -41,6 +42,9 @@ bot.hears("hii", (ctx) => hearsHii(ctx));
 
 // on method
 bot.on("text", (ctx) => onText(ctx));
+
+// handle callback query
+bot.action("choose4me-yes", (ctx) => choose4MeCb(ctx, "yes"));
 
 bot.launch();
 
