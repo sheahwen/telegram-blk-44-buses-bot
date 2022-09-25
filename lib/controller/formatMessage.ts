@@ -13,7 +13,8 @@ export const formatMessage = (data: Times): string => {
 const parseArray = (arr: number[]): string => {
   let str = "";
   for (const seconds of arr) {
-    str += secondToMinRoundedDown(seconds).toString() + "min  ";
+    str +=
+      secondToMinRoundedDown(seconds).toString().padStart(2, "0") + "min  ";
   }
   return str;
 };
