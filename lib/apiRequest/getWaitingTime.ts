@@ -16,16 +16,20 @@ interface Response extends AxiosResponse {
 /**
  * parse estimated arrival time of upcoming buses into an array of seconds
  */
-export const getWaitingTime = (code: string, serviceNo: string) => {
-  axios
-    .get(getBusArrivalApiUrl(code, serviceNo), busArrivalApiConfig)
-    .then((res: Response) => {
-      const waitingTime = getTimeDiff(res.data.Services[0]);
-      return waitingTime;
-    })
-    .catch((e) => {
-      throw e;
-    });
+export const getWaitingTime = async (
+  code: string,
+  serviceNo: string
+): Promise<number[]> => {
+  try {
+    const res: Response = await axios(
+      getBusArrivalApiUrl(code, serviceNo),
+      busArrivalApiConfig
+    );
+    const waitingTime = getTimeDiff(res.data.Services[0]);
+    return waitingTime;
+  } catch (e) {
+    return [];
+  }
 };
 
 const getTimeDiff = (service: BusArrivalServiceModel): number[] => {
