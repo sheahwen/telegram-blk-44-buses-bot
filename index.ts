@@ -32,7 +32,7 @@ bot.command(generateCommandForAllCases("bus"), (ctx) => {
 
 // /choose4me command
 bot.command(generateCommandForAllCases("choose4me"), (ctx) => {
-  choose4MeCommand(ctx);
+  choose4MeCommand(ctx, bot);
 });
 
 // hears method
