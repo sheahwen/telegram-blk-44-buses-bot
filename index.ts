@@ -5,14 +5,14 @@ dotenv.config();
 
 import { Telegraf } from "telegraf";
 
-import { generateCommandForAllCases } from "../lib/helper/generateArrayForAllCases";
+import { generateCommandForAllCases } from "./lib/helper/generateArrayForAllCases";
 
-import { helpCommand } from "./commands/help";
-import { startCommand } from "./commands/start";
-import { testCommand } from "./commands/test";
-import { hearsHi } from "./hears/hi";
-import { onText } from "./on/text";
-import { busCommand } from "./commands/bus";
+import { helpCommand } from "./src/commands/help";
+import { startCommand } from "./src/commands/start";
+import { testCommand } from "./src/commands/test";
+import { hearsHi } from "./src/hears/hi";
+import { onText } from "./src/on/text";
+import { busCommand } from "./src/commands/bus";
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
@@ -37,4 +37,13 @@ bot.hears("hi", (ctx) => hearsHi(ctx));
 // on method
 bot.on("text", (ctx) => onText(ctx));
 
-bot.launch();
+// bot.launch();
+
+exports.handler = (event: any, context: any, callback: any) => {
+  const tmp = JSON.parse(event.body);
+  bot.handleUpdate(tmp);
+  return callback(null, {
+    statusCode: 200,
+    body: "",
+  });
+};
