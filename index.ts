@@ -23,7 +23,7 @@ bot.start((ctx) => startCommand(ctx));
 bot.help((ctx) => helpCommand(ctx));
 
 // /test command
-bot.command(generateCommandForAllCases("test"), (ctx) => testCommand(ctx));
+// bot.command(generateCommandForAllCases("test"), (ctx) => testCommand(ctx));
 
 // /235 command
 bot.command(generateCommandForAllCases("bus"), (ctx) => {
@@ -37,13 +37,13 @@ bot.hears("hi", (ctx) => hearsHi(ctx));
 // on method
 bot.on("text", (ctx) => onText(ctx));
 
-// bot.launch();
+bot.launch();
 
-exports.handler = (event: any, context: any, callback: any) => {
-  const tmp = JSON.parse(event.body);
-  bot.handleUpdate(tmp);
-  return callback(null, {
-    statusCode: 200,
-    body: "",
-  });
-};
+// exports.handler = (event: any, context: any, callback: any) => {
+//   const tmp = JSON.parse(event.body);
+//   bot.handleUpdate(tmp);
+//   return callback(null, {
+//     statusCode: 200,
+//     body: "",
+//   });
+// };

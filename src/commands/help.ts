@@ -1,5 +1,6 @@
 import Context from "telegraf/typings/context";
+import { listOfCommandsMsg } from "../../lib/constant/replyMessages";
 
 export const helpCommand = (ctx: Context) => {
-  ctx.reply("Help command is triggered");
+  ctx.reply(listOfCommandsMsg);
 };
