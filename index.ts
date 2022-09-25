@@ -9,10 +9,9 @@ import { generateCommandForAllCases } from "./lib/helper/generateArrayForAllCase
 
 import { helpCommand } from "./src/commands/help";
 import { startCommand } from "./src/commands/start";
-import { testCommand } from "./src/commands/test";
-import { hearsHi } from "./src/hears/hi";
 import { onText } from "./src/on/text";
 import { busCommand } from "./src/commands/bus";
+import { hearsChoose4Me } from "./src/hears/choose4me";
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
@@ -32,7 +31,7 @@ bot.command(generateCommandForAllCases("bus"), (ctx) => {
 
 // hears method
 // need to disable group privacy setting for use in groupchat
-bot.hears("hi", (ctx) => hearsHi(ctx));
+bot.hears("choose4me", (ctx) => hearsChoose4Me(ctx));
 
 // on method
 bot.on("text", (ctx) => onText(ctx));
