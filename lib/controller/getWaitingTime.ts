@@ -8,6 +8,7 @@ import {
   BusArrivalModel,
   BusArrivalServiceModel,
 } from "../interface/BusArrivalModel";
+import { secondToMinRoundedDown } from "../helper/secondToMin";
 
 interface Response extends AxiosResponse {
   data: BusArrivalModel;
@@ -44,7 +45,7 @@ const getTimeDiff = (service: BusArrivalServiceModel): number[] => {
   for (const key of nextBuses) {
     if (key in service) {
       const estimatedArrivalTime = service[key]!.EstimatedArrival;
-      waitingTime.push(timeDiff(estimatedArrivalTime));
+      waitingTime.push(secondToMinRoundedDown(timeDiff(estimatedArrivalTime)));
     }
   }
 
