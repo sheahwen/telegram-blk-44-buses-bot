@@ -1,25 +1,48 @@
-import axios from "axios";
-import { APIConfig, generateAPIUrl } from "../helper/busArrivalAPIReq";
+import axios, { AxiosResponse } from "axios";
 import { timeDiff } from "../helper/timeDiff";
+import {
+  busArrivalApiConfig,
+  getBusArrivalApiUrl,
+} from "../helper/busArrivalAPIReq";
+import {
+  BusArrivalModel,
+  BusArrivalServiceModel,
+} from "../interface/BusArrivalModel";
 
+interface Response extends AxiosResponse {
+  data: BusArrivalModel;
+}
+
+/**
+ * parse estimated arrival time of upcoming buses into an array of seconds
+ */
 export const getWaitingTime = (code: string, serviceNo: string) => {
   axios
-    .get(generateAPIUrl(code, serviceNo), APIConfig)
-    .then((res) => {
+    .get(getBusArrivalApiUrl(code, serviceNo), busArrivalApiConfig)
+    .then((res: Response) => {
       const waitingTime = getTimeDiff(res.data.Services[0]);
       return waitingTime;
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      throw e;
+    });
 };
 
-const getTimeDiff = (service: any) => {
-  const waitingTimes = [];
+const getTimeDiff = (service: BusArrivalServiceModel): number[] => {
+  const waitingTime = [];
 
-  for (const key of ["NextBus", "NextBus2", "NextBus3"]) {
+  const nextBuses = new Set<"NextBus" | "NextBus2" | "NextBus3">([
+    "NextBus",
+    "NextBus2",
+    "NextBus3",
+  ]);
+
+  for (const key of nextBuses) {
     if (key in service) {
-      const estimatedArrivalTime = service[key].EstimatedArrival;
-      waitingTimes.push(timeDiff(estimatedArrivalTime));
+      const estimatedArrivalTime = service[key]!.EstimatedArrival;
+      waitingTime.push(timeDiff(estimatedArrivalTime));
     }
   }
-  return waitingTimes;
+
+  return waitingTime;
 };
