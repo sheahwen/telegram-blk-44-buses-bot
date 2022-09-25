@@ -19,11 +19,11 @@ export const choose4MeCommand = async (
         [
           {
             text: "YES!!",
-            callback_data: "yes",
+            callback_data: "choose4me-yes",
           },
           {
             text: "no",
-            callback_data: "no",
+            callback_data: "choose4me-no",
           },
         ],
       ],
