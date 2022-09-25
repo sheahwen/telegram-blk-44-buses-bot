@@ -6,7 +6,7 @@ export const getWaitingTime = (code: string, serviceNo: string) => {
   axios
     .get(generateAPIUrl(code, serviceNo), APIConfig)
     .then((res) => {
-      const waitingTime = getTimeDiff(res.data.services[0]);
+      const waitingTime = getTimeDiff(res.data.Services[0]);
       return waitingTime;
     })
     .catch((e) => console.log(e));
