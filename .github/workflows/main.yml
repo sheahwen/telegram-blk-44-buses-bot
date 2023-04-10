@@ -19,8 +19,8 @@ jobs:
       - name: Push Zip to S3
         uses: jakejarvis/s3-sync-action@v0.3.1
         env:
-        SOURCE_DIR: "./artifacts"
-        AWS_REGION: "ap-southeast-1"
-        AWS_S3_BUCKET: "blk-44-buses-bot"
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: "./artifacts"
+          AWS_REGION: "ap-southeast-1"
+          AWS_S3_BUCKET: "blk-44-buses-bot"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
