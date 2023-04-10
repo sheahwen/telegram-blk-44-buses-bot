@@ -46,13 +46,14 @@ bot.on("text", (ctx) => onText(ctx));
 // handle callback query
 bot.action("choose4me-yes", (ctx) => choose4MeCb(ctx, "yes"));
 
-bot.launch();
+// launch in localhost
+// bot.launch();
 
-// exports.handler = (event: any, context: any, callback: any) => {
-//   const tmp = JSON.parse(event.body);
-//   bot.handleUpdate(tmp);
-//   return callback(null, {
-//     statusCode: 200,
-//     body: "",
-//   });
-// };
+exports.handler = (event: any, context: any, callback: any) => {
+  const tmp = JSON.parse(event.body);
+  bot.handleUpdate(tmp);
+  return callback(null, {
+    statusCode: 200,
+    body: "",
+  });
+};
