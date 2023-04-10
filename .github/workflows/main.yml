@@ -1,11 +1,11 @@
-name: main workflow
+name: Main Workflow
 
-on: [push]
+on: push
 
 jobs:
   Upload-zipped-artifacts-to-s3-bucket:
     runs-on: ubuntu-latest
-    step:
+    steps:
       - run: echo "main workflow is triggered"
 
       - name: Make artifact directory
