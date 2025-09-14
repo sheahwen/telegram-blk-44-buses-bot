@@ -1,5 +1,5 @@
 const endpointBaseUrl =
-  "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2";
+  "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival";
 
 export const getBusArrivalApiUrl = (code: string, serviceNo: string) => {
   return `${endpointBaseUrl}?BusStopCode=${code}&ServiceNo=${serviceNo}`;
